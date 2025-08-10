@@ -1,5 +1,9 @@
 # AWS RAG Application
 
+[![GitHub Repository](https://img.shields.io/badge/GitHub-aws--rag-blue?style=flat-square&logo=github)](https://github.com/vashishtavarma/aws-rag.git)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python)](https://www.python.org/)
+[![AWS Bedrock](https://img.shields.io/badge/AWS-Bedrock-orange?style=flat-square&logo=amazon-aws)](https://aws.amazon.com/bedrock/)
+
 A Retrieval-Augmented Generation (RAG) application built with AWS Bedrock that uses knowledge bases and guardrails to provide secure, contextual responses.
 
 ## Features
@@ -21,7 +25,7 @@ A Retrieval-Augmented Generation (RAG) application built with AWS Bedrock that u
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/vashishtavarma/aws-rag.git
    cd aws-rag
    ```
 
@@ -43,12 +47,9 @@ A Retrieval-Augmented Generation (RAG) application built with AWS Bedrock that u
    ```env
    KNOWLEDGE_BASE_ID=your_knowledge_base_id
    GUARDRAIL_ID=your_guardrail_id
-   GUARDRAIL_VERSION=1
-   REGION_NAME=ap-south-1
-   LLAMA_MODEL_ARN=arn:aws:bedrock:ap-south-1::foundation-model/meta.llama3-70b-instruct-v1:0
-   AWS_ACCESS_KEY_ID=your_access_key
-   AWS_SECRET_ACCESS_KEY=your_secret_key
-   LAMBDA_FUNCTION_NAME=your_lambda_function_name
+   GUARDRAIL_VERSION=number
+   REGION_NAME=your_region_name
+   LLAMA_MODEL_ARN=your_llama_model_arn
    ```
 
 ## Configuration
@@ -62,9 +63,6 @@ A Retrieval-Augmented Generation (RAG) application built with AWS Bedrock that u
 | `GUARDRAIL_VERSION` | Guardrail version (default: 1) | Yes |
 | `REGION_NAME` | AWS region | Yes |
 | `LLAMA_MODEL_ARN` | LLaMA model ARN | Yes |
-| `AWS_ACCESS_KEY_ID` | AWS access key | Yes |
-| `AWS_SECRET_ACCESS_KEY` | AWS secret key | Yes |
-| `LAMBDA_FUNCTION_NAME` | Lambda function name | Optional |
 
 ### Model Configuration
 
@@ -187,13 +185,10 @@ aws-rag/
 
 For debugging, you can add print statements or logging to track the request flow through the application.
 
-## Contributing
+## Repository
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+🔗 **GitHub**: [https://github.com/vashishtavarma/aws-rag.git](https://github.com/vashishtavarma/aws-rag.git)
+
 
 ## License
 
@@ -202,6 +197,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Support
 
 For issues and questions:
+- Open an issue on [GitHub](https://github.com/vashishtavarma/aws-rag/issues)
 - Check the AWS Bedrock documentation
 - Review AWS CloudWatch logs for Lambda errors
 - Ensure all environment variables are properly configured
+
+## Author
+
+**Vashishta Varma** - [GitHub Profile](https://github.com/vashishtavarma)
