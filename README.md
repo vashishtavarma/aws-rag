@@ -1,6 +1,5 @@
 # AWS RAG Application
 
-[![GitHub Repository](https://img.shields.io/badge/GitHub-aws--rag-blue?style=flat-square&logo=github)](https://github.com/vashishtavarma/aws-rag.git)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python)](https://www.python.org/)
 [![AWS Bedrock](https://img.shields.io/badge/AWS-Bedrock-orange?style=flat-square&logo=amazon-aws)](https://aws.amazon.com/bedrock/)
 
@@ -180,15 +179,6 @@ aws-rag/
 2. **Authentication Errors**: Verify AWS credentials are correctly configured
 3. **Parameter Validation**: Check that all required environment variables are set
 4. **Guardrail Responses**: The guardrail may block certain types of content
-
-### Debug Mode
-
-For debugging, you can add print statements or logging to track the request flow through the application.
-
-## Repository
-
-🔗 **GitHub**: [https://github.com/vashishtavarma/aws-rag.git](https://github.com/vashishtavarma/aws-rag.git)
-
 
 ## License
 
