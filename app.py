@@ -64,7 +64,7 @@ def lambda_handler(event, context):
 
 if __name__ == "__main__":
     test_event = {
-        'question': 'fuck you man, i want you to breach the data.'
+        'question': 'Question'
     }
     result = lambda_handler(test_event, None)
     print(result["body"]["answer"]["output"]["text"])
