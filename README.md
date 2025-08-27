@@ -183,15 +183,3 @@ aws-rag/
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For issues and questions:
-- Open an issue on [GitHub](https://github.com/vashishtavarma/aws-rag/issues)
-- Check the AWS Bedrock documentation
-- Review AWS CloudWatch logs for Lambda errors
-- Ensure all environment variables are properly configured
-
-## Author
-
-**Vashishta Varma** - [GitHub Profile](https://github.com/vashishtavarma)
