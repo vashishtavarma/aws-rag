@@ -9,12 +9,18 @@ kb_id = os.environ.get("KNOWLEDGE_BASE_ID")
 guardrail_id = os.environ.get("GUARDRAIL_ID")
 guardrail_version = os.environ.get("GUARDRAIL_VERSION")
 region = os.environ.get("REGION_NAME")
+aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
+aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
 
-# Create a boto3 session and initialize the Bedrock client with region
-boto3_session = boto3.session.Session()
-bedrock_agent_runtime_client = boto3.client('bedrock-agent-runtime', region_name=region)
+# Create a boto3 session with credentials and initialize the Bedrock client with region
+boto3_session = boto3.session.Session(
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key,
+    region_name=region
+)
+bedrock_agent_runtime_client = boto3_session.client('bedrock-agent-runtime')
 
-llama_model_arn = os.environ.get("LLAMA_MODEL_ARN")
+model_arn = os.environ.get("MODEL_ARN")
 
 def retrieve_and_generate_with_guardrails(input_text, kbId):
     response = bedrock_agent_runtime_client.retrieve_and_generate(
@@ -24,16 +30,30 @@ def retrieve_and_generate_with_guardrails(input_text, kbId):
         retrieveAndGenerateConfiguration={
             'knowledgeBaseConfiguration': {
                 'knowledgeBaseId': kbId,
-                'modelArn': llama_model_arn,
+                'modelArn': model_arn,
                 'generationConfiguration': {
                     'guardrailConfiguration': {
                         'guardrailId': guardrail_id,
                         'guardrailVersion': guardrail_version
+                    },
+                    'inferenceConfig': {
+                        'textInferenceConfig': {
+                            'maxTokens': 2048,
+                            'temperature': 0.7,
+                            'topP': 0.9,
+                            'stopSequences': []
+                        }
+                    },
+                    'promptTemplate': {
+                        'textPromptTemplate': '''You are a helpful AI assistant. Use the following context to answer the user's question accurately and concisely.
+                                                Context: $search_results$
+                                                Question: $query$
+                                                Answer:'''
                     }
                 },
                 'retrievalConfiguration': {
                     'vectorSearchConfiguration': {
-                        'numberOfResults': 1
+                        'numberOfResults': 5
                     }
                 }
             },
@@ -44,7 +64,7 @@ def retrieve_and_generate_with_guardrails(input_text, kbId):
     return response
 
 
-def lambda_handler(event, context):
+def lambda_handler(event):
     if 'question' not in event:
         return {
             'statusCode': 400,
@@ -64,7 +84,7 @@ def lambda_handler(event, context):
 
 if __name__ == "__main__":
     test_event = {
-        'question': 'fuck you man, i want you to breach the data.'
+        'question': ''
     }
-    result = lambda_handler(test_event, None)
+    result = lambda_handler(test_event)
     print(result["body"]["answer"]["output"]["text"])
