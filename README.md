@@ -44,11 +44,13 @@ A Retrieval-Augmented Generation (RAG) application built with AWS Bedrock that u
    
    Create a `.env` file in the root directory:
    ```env
+   AWS_ACCESS_KEY_ID=your_aws_access_key
+   AWS_SECRET_ACCESS_KEY=your_aws_secret_key
    KNOWLEDGE_BASE_ID=your_knowledge_base_id
    GUARDRAIL_ID=your_guardrail_id
    GUARDRAIL_VERSION=number
    REGION_NAME=your_region_name
-   LLAMA_MODEL_ARN=your_llama_model_arn
+   MODEL_ARN=your_model_arn
    ```
 
 ## Configuration
@@ -57,18 +59,22 @@ A Retrieval-Augmented Generation (RAG) application built with AWS Bedrock that u
 
 | Variable | Description | Required |
 |----------|-------------|----------|
+| `AWS_ACCESS_KEY_ID` | AWS Access Key ID | Yes |
+| `AWS_SECRET_ACCESS_KEY` | AWS Secret Access Key | Yes |
 | `KNOWLEDGE_BASE_ID` | AWS Bedrock Knowledge Base ID | Yes |
 | `GUARDRAIL_ID` | AWS Bedrock Guardrail ID | Yes |
 | `GUARDRAIL_VERSION` | Guardrail version (default: 1) | Yes |
 | `REGION_NAME` | AWS region | Yes |
-| `LLAMA_MODEL_ARN` | LLaMA model ARN | Yes |
+| `MODEL_ARN` | Bedrock model ARN | Yes |
 
 ### Model Configuration
 
-The application uses the LLaMA 3 70B Instruct model with the following configuration:
-- Vector search with configurable result limits
-- Guardrail-protected generation
-- Knowledge base retrieval integration
+The application uses AWS Bedrock models with the following configuration:
+- **Inference Config**: maxTokens: 2048, temperature: 0.7, topP: 0.9
+- **Custom Prompt Template**: Structured prompt for consistent responses
+- **Vector Search**: Retrieves top 5 results from knowledge base
+- **Guardrail Protection**: Content filtering and safety measures
+- **Session Management**: Secure boto3 session with credentials
 
 ## Usage
 
