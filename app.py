@@ -84,7 +84,7 @@ def lambda_handler(event):
 
 if __name__ == "__main__":
     test_event = {
-        'question': ''
+        'question': 'Question'
     }
     result = lambda_handler(test_event)
     print(result["body"]["answer"]["output"]["text"])
